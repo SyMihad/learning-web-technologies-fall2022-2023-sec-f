@@ -8,10 +8,11 @@
     $gender = $_POST['gender'];
 
     if($username == "" || $password == "" || $email == ""){
-        header('location: signup.php?err=null');
+        header('location: registration.php?err=null');
     }else{
         $user = ['name'=>$name, 'email'=>$email, 'username'=>$username, 'password'=>$password, 'confirmpassword'=>$confirmpassword, 'gender'=>$gender];
         $_SESSION['user']= $user;
+        setcookie($name, $email, $username, $password, $confirmpassword, $gender, time()+3600, "/");
         header('location: login.php');
     }
 ?>

@@ -41,7 +41,7 @@
                 <tr>
                     
                     <td colspan="2">
-                        <form method="post" action="login.php" enctype="">
+                        <form method="post" action="loginCheck.php" enctype="">
                             <fieldset>
                                 <legend>LOGIN</legend>
                                 User Name: <input type="text" name="username" value=""><br>
