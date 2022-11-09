@@ -10,7 +10,7 @@
     </head>
 
     <body>
-        <form>
+        <form method="post" action="addProductCheck.php" enctype="">
             <fieldset>
                 <legend>ADD PRODUCT</legend>
                 Name<br>
