@@ -20,6 +20,7 @@
                 Selling Price:<br>
                 <input type='number' name='sellingPrice' value=''><br>
                 <hr>
+                <input type="checkbox" name="displayable" value="Yes">Display<hr>
                 <input type='submit' name='submit' value='Save'>
             </fieldset>
         </form>
