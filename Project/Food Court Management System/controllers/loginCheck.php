@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once "../models/customerModel.php";
 $userType = $_POST['userType'];
 $username = $_POST['username'];
 $password = $_POST['password'];
@@ -12,20 +13,15 @@ else if(($username!='' and $password!='') and $userType==''){
 }
 
 if($userType=='customer'){
-    $con = mysqli_connect('localhost', 'root','', 'food_court_management_system');
-    $sql = "SELECT * from customer WHERE user_name='".$username."'";
-    $results=mysqli_query($con, $sql);
-    $status = false;
-    $row = mysqli_fetch_assoc($results);
-    if($row['user_password']==$password){
-        $status = true;
-    }
+    
+    $user = ['userName'=> $username, 'password'=>$password];
+    $status = customerLogin($user);
 
     if($status){
         setcookie('status', 'true', time()+60*60*72, '/');
         setcookie('fullname', $user[0]." ".$user[1], time()+60*60*72, '/');
         setcookie('username', $username, time()+60*60*72, '/');
-        header('location: customer/customerDashboard.php');
+        header('location: ../views/customerDashboard.php');
     }
     else{
         header('location: home.php?err=invalid');

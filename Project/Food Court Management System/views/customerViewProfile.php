@@ -27,7 +27,7 @@
 <?php
 
 session_start();
-
+require_once "../models/customerModel.php";
 if(!isset($_COOKIE['status'])){
   header('location: ../home.php?err=bad_request');
 }
@@ -69,32 +69,20 @@ if(!isset($_COOKIE['status'])){
 
                         <td align="top">
                             <?php
-                                removeLine('data/customer.txt');
-                                $file = fopen('data/customer.txt', 'r');
-                                $status = false;
-                                $i=1;
-                                while(!feof($file)){
-                                    $data = fgets($file);
-                                    
-                                    if($user = explode('|', $data)){
-                                        
-                                        if(trim($user[2])==$_COOKIE['username']){
-                                            break;
-                                        }
-                                    }
-                                    
-                                    $i++;
-                                }
+                                $user = returnCustomerData($_COOKIE['username']);
+
                             ?>  
                             <table>
                                 <?php
-                                    print("<tr><td><b>First Name: </b></td><td><input type=text name=firstName value=$user[0] readonly></td></tr>");
-                                    print("<tr><td><b>Last Name: </b></td><td><input type=text name=lastName value=$user[1] readonly></td></tr>");
-                                    print("<tr><td><b>User Name: </b></td><td><input type=text name=userName value=$user[2] readonly></td></tr>");
-                                    print("<tr><td><b>User Name: </b></td><td><input type=text name=gender value=$user[3] readonly></td></tr>");
-                                    print("<tr><td><b>User Name: </b></td><td><input type=date name=birthDate value=$user[4] readonly></td></tr>");
-                                    print("<tr><td><b>Email: </b></td><td><input type=email name=userEmail value=$user[3] readonly></td></tr>");
-                                    print("<tr><td><b>Phone Number: </b></td><td><input type=tel name=userPhoneNum value=$user[4] readonly></td></tr>");
+                                     while($row = mysqli_fetch_array($user)){
+                                        print("<tr><td><b>First Name: </b></td><td><input type=text name=firstName value=$row[0] readonly></td></tr>");
+                                        print("<tr><td><b>Last Name: </b></td><td><input type=text name=lastName value=$row[1] readonly></td></tr>");
+                                        print("<tr><td><b>User Name: </b></td><td><input type=text name=userName value=$row[2] readonly></td></tr>");
+                                        print("<tr><td><b>Gender: </b></td><td><input type=text name=gender value=$row[3] readonly></td></tr>");
+                                        print("<tr><td><b>date of Birth: </b></td><td><input type=date name=birthDate value=$row[4] readonly></td></tr>");
+                                        print("<tr><td><b>Email: </b></td><td><input type=email name=userEmail value=$row[3] readonly></td></tr>");
+                                        print("<tr><td><b>Phone Number: </b></td><td><input type=tel name=userPhoneNum value=$row[4] readonly></td></tr>");
+                                     }
                                 ?>
                             </table>
                        </td>

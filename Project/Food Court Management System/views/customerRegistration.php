@@ -112,7 +112,7 @@
                                 <tr>
                                      
                                     <td align="center" colspan="2">
-                                        <input type="submit" name="" value="Register"> &nbsp
+                                        <input type="submit" name="" value="Register" id="submit"> &nbsp
                                         <input type="reset" name="" value="Reset">
                                     </td>
                                 </tr>
@@ -133,5 +133,28 @@
                 </table>
             </fieldset>
         </form>
+
+        <script>
+            function checkNametype(data){
+
+                const forUserName = ["A", "B", "C", "D", "E","F", "G", "H", "I", "J",
+                                    "K", "L", "M", "N", "O","P", "Q", "R", "S", "T",
+                                    "U", "V", "W", "X", "Y","Z", "a", "b", "c", "d",
+                                    "e", "f", "g", "h", "i","j", "k", "l", "m", "n",
+                                    "o", "p", "q", "r", "s","t", "u", "v", "w", "x",
+                                    "y", "z", " ", "-", "_"];
+
+                for(let i=0;i<data.length; i++){
+                    let position = forUserName.includes(data[i]);
+                    if(position==false){
+                        alert("Name must contain alphabet, period, dash or underscore.");
+                        return false;
+                    }
+                }
+                return true;
+            }
+
+
+        </script>
     </body>
     </html>
