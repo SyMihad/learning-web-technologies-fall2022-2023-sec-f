@@ -67,7 +67,7 @@ if(!isset($_COOKIE['status'])){
                                 <ul style="line-height:250%">
 
                                 <li><a href="customerDashboard.php">Dashboard</a><br></li>
-                                <li><a href="customerSearchAjax.php">Place Order</a><br></li>
+                                <li><a href="customerOrder.php">Place Order</a><br></li>
                                 <li><a href="customerViewProfile.php">View Profile</a></li>
                                 <li><a href="customerEditProfile.php">Edit Profile</a></li>
                                 <li><a href="logOut.php">LogOut</a></li>
@@ -77,11 +77,26 @@ if(!isset($_COOKIE['status'])){
                         </td>
 
                         <td align="top">
-                            <?php
-                                echo "Welcome ".$_COOKIE['username'];
-                                //print("Thanks for choosing our food court.To order food please go to Place Order page and make your desire order.");
-                            ?>
-                            <p>Thanks for choosing our food court. To order food please go to Place Order page and make your desire order.</p>
+                            Search Reataurant: <input type="text" id="search" name="search" value=""/>
+                            <input type="button" name="button" value="Search" onclick="ajaxSearch()"/>
+                            <div id="show">Table</div>
+                            <script>
+                                function ajaxSearch(){
+                                    let searchName = document.getElementById("search").value;
+                                    let xhttp = new XMLHttpRequest();
+                                    xhttp.open('POST', '../models/searchRestaurantModel.php', 'true');
+                                    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                                    xhttp.send('name='+searchName);
+                                    xhttp.onreadystatechange = function(){
+                
+                                        if(this.readyState == 4 && this.status == 200){
+                                            alert(this.responseText);
+                                            //document.getElementsByTagName('show').innerHTML = this.responseText;
+                                        }
+                
+                                    }
+                                }
+                            </script>
                        </td>
                     </tr>
 
