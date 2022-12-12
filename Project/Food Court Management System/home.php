@@ -42,8 +42,8 @@ if(isset($_GET['msg'])){
                                     <td>
                                         <input type="radio" name="userType" value="admin">
                                     </td>
-                                    <td>
-                                        <b>Admin</b>
+                                    <td >
+                                        <b >Admin</b>
                                     </td>
                                 </tr>
                                 

@@ -77,7 +77,7 @@ if(!isset($_COOKIE['status'])){
                         </td>
 
                         <td align="top">
-                            Search Reataurant: <input type="text" id="search" name="search" value=""/>
+                            Search By Food Item: <input type="text" id="search" name="search" value=""/>
                             <input type="button" name="button" value="Search" onclick="ajaxSearch()"/>
                             <div id="show">Table</div>
                             <script>
@@ -90,8 +90,8 @@ if(!isset($_COOKIE['status'])){
                                     xhttp.onreadystatechange = function(){
                 
                                         if(this.readyState == 4 && this.status == 200){
-                                            alert(this.responseText);
-                                            //document.getElementsByTagName('show').innerHTML = this.responseText;
+                                             //alert(this.responseText);
+                                            document.getElementById('show').innerHTML = this.responseText;
                                         }
                 
                                     }
